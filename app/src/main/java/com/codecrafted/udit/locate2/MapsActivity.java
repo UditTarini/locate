@@ -88,21 +88,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 mMap.clear();
                 mMap.addMarker(new MarkerOptions().position(userLocation).title("Your Location"));
-                //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation,15));
-
-               //mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(userLocation,14),1000,new);
-
-//                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(userLocation,14), new GoogleMap.CancelableCallback() {
-//                    @Override
-//                    public void onFinish() {
-//                        mMap.moveCamera(CameraUpdate)
-//                    }
-//
-//                    @Override
-//                    public void onCancel() {
-//                        // Code to execute when the user has canceled the animateCamera task
-//                    }
-//                });
+  
                 mMap.setBuildingsEnabled(true);
                 UiSettings mapUiSettings = mMap.getUiSettings();
                 mapUiSettings.setZoomControlsEnabled(true);
@@ -194,7 +180,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
 
             else {
-
+                try {
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
 
                 Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -206,10 +192,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(userLocation));
 
 
+                  } catch (SecurityException e) {
+
             }
 
 
-        }
+            }
+
+
+        }}
 
 
     }
